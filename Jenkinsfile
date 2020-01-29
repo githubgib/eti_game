@@ -2,7 +2,7 @@
 pipeline {
     // Set up the docker agent the jenkins slave will run on
     //  agent { docker { image 'python:3.8' } }
-    agent { docker { dockerfile true } }
+    agent { dockerfile true  }
 
     // Write out what happens each stage
     stages {
