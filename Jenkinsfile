@@ -9,6 +9,7 @@ pipeline {
                 echo 'Building..'
                 echo 'Python Version'
                 sh 'python --version'
+                sh 'python -m py_compile game.py'
             }
         }
         stage('Test') {
