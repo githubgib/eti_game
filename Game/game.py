@@ -1,16 +1,22 @@
-<<<<<<< HEAD
 import time
 menuList = ["Exit",
-                        "Read and load maze from file",
-                        "View maze",
-                        "Play maze game",
-                        "Configure current maze"]
+            "Read and load maze from file",
+            "View maze",
+            "Play maze game",
+            "Configure current maze"]
 bars = "="*35
 
+<<<<<<< HEAD
 #Display Menu
 def Menu():
+=======
+# Display Menu
+
+
+def printMenu():
+>>>>>>> ff5895c4eaea17bf73d3d18292366cb72e2879b9
     print("\nMain Menu\n{}".format(bars))
-    for menu in range(1,5):
+    for menu in range(1, 5):
         print("[{}]{}{}".format(menu, '\t', menuList[menu]))
     print('\n'*0)
     for m in range(0, 1):
@@ -18,7 +24,8 @@ def Menu():
 
     return(int(input("Enter your option: ")))
 
-# Menu while loop    
+
+# Menu while loop
 while True:
     option = printMenu()
 

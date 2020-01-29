@@ -1,6 +1,8 @@
+// Declarative Pipeline
 pipeline {
     // Set up the docker agent the jenkins slave will run on
-     agent { docker { image 'python:3.5.1' } }
+    //  agent { docker { image 'python:3.8' } }
+    agent { dockerfile true  }
 
     // Write out what happens each stage
     stages {
@@ -26,3 +28,23 @@ pipeline {
         }
     }
 }
+
+// Scripted Pipeline
+// node{
+//     Stage 'Checkout'
+//         echo 'Checkout Stage'
+//         checkout scm
+
+//     Stage 'Build'
+//         echo 'Building Stage'
+//         sh 'python --version'
+//         sh 'python3 Game/py_compileCheck.py'
+
+//     Stage 'Test'
+//         echo 'Test Stage'
+//         //Pytest here
+
+//     Stage 'Deploy'
+//         echo 'Test Stage'
+
+// }
