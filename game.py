@@ -6,10 +6,15 @@ menuList = ["Exit",
             "Configure current maze"]
 bars = "="*35
 
+<<<<<<< HEAD
+#Display Menu
+def Menu():
+=======
 # Display Menu
 
 
 def printMenu():
+>>>>>>> ff5895c4eaea17bf73d3d18292366cb72e2879b9
     print("\nMain Menu\n{}".format(bars))
     for menu in range(1, 5):
         print("[{}]{}{}".format(menu, '\t', menuList[menu]))
