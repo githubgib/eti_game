@@ -8,18 +8,20 @@ pipeline {
             steps {
                 echo 'Building..'
                 sh 'python --version'
-                sh 'python3 py_compileCheck.py'
+                sh 'pip install -r requirements.txt'
+                sh 'python3 /Game/py_compileCheck.py'
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing..'
+                // Pytest here
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                sh 'python3 game.py'
+                sh 'python3 /Game/game.py'
             }
         }
     }
