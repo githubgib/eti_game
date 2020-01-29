@@ -8,7 +8,7 @@ pipeline {
             steps {
                 echo 'Building..'
                 sh 'python --version'
-                sh 'sudo pip install -r Game/requirements.txt'
+                // sh 'sudo pip install -r Game/requirements.txt'
                 sh 'python3 Game/py_compileCheck.py'
             }
         }
