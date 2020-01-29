@@ -8,7 +8,7 @@ menuList = ["Exit",
 bars = "="*35
 
 #Display Menu
-def printMenu():
+def Menu():
     print("\nMain Menu\n{}".format(bars))
     for menu in range(1,5):
         print("[{}]{}{}".format(menu, '\t', menuList[menu]))
@@ -40,10 +40,3 @@ while True:
         print("Goodbye.")
         time.sleep(1)
         exit()
-=======
-def menu():
-    print("THIS IS MY WORLD!")
-
-
-menu()
->>>>>>> 94dd96218532529790471f96daf1ff35559f1407
