@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import time
 menuList = ["Exit",
                         "Read and load maze from file",
@@ -39,3 +40,10 @@ while True:
         print("Goodbye.")
         time.sleep(1)
         exit()
+=======
+def menu():
+    print("THIS IS MY WORLD!")
+
+
+menu()
+>>>>>>> 94dd96218532529790471f96daf1ff35559f1407
