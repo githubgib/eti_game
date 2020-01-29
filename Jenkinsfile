@@ -7,9 +7,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                echo 'Python Version'
                 sh 'python --version'
-                sh 'python -m py_compile game.py'
+                sh 'python3 py_compileCheck.py'
             }
         }
         stage('Test') {
@@ -20,6 +19,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
+                sh 'python3 game.py'
             }
         }
     }
