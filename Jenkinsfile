@@ -23,7 +23,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                // Key in some values to test the game here, manual inputs.. etc!
+                // Push to dockerhub image repository with tags per mergeid/featurebranch or etc.
                 // sh 'python3 game.py'
             }
         }
