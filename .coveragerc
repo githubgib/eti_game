@@ -1,0 +1,7 @@
+[run]
+omit = */__pycache__, */py_compileCheck.py
+branch = true
+source = .
+
+[report]
+show_missing = false
