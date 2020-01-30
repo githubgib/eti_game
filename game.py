@@ -1,4 +1,5 @@
 import time
+import csv
 menuList = ["Exit",
             "Read and load maze from file",
             "View maze",
@@ -26,6 +27,20 @@ while True:
 
     if option is 1:
         print("Reading and loading maze from file...")
+        filename = str(
+            input("Enter the .csv file name (without .csv):"))+'.csv'
+        with open(filename) as csv_file:
+            csv_reader = csv.reader(csv_file, delimiter=',')
+            line_count = 0
+            for row in csv_reader:
+                if line_count == 0:
+                    print(f'Column names are {", ".join(row)}')
+                    line_count += 1
+                else:
+                    print(
+                        f'\t{row[0]} works in the {row[1]} department, and was born in {row[2]}.')
+                    line_count += 1
+            print(f'Processed {line_count} lines.')
         time.sleep(1)
     elif option is 2:
         print("Viewing maze...")
