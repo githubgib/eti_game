@@ -6,6 +6,13 @@ menuList = ["Exit",
             "View maze",
             "Play maze game",
             "Configure current maze"]
+configMenuList = [
+    "Exit to Main Menu",
+    "Create Wall",
+    "Create Passageway",
+    "Create start point",
+    "Create end point",
+]
 bars = "="*35
 
 # Display Menu
@@ -18,6 +25,17 @@ def printMenu():
     print('\n'*0)
     for m in range(0, 1):
         print("[{}]{}{}".format(m, '\t', menuList[m]))
+
+    return(int(input("Enter your option: ")))
+
+
+def printConfigMenu():
+    print("Configuration Menu\n{}".format(bars))
+    for menu in range(1, 5):
+        print("[{}]{}{}".format(menu, '\t', configMenuList[menu]))
+    print('\n'*0)
+    for m in range(0, 1):
+        print("[{}]{}{}".format(m, '\t', configMenuList[m]))
 
     return(int(input("Enter your option: ")))
 
@@ -73,6 +91,7 @@ while True:
         time.sleep(1)
     elif option is 2:
         print("Viewing maze...")
+        # Prints the arrays, seperated with a new line for proper formatting.
         print(*maze, sep="\n")
         time.sleep(1)
     elif option is 3:
@@ -80,6 +99,23 @@ while True:
         time.sleep(1)
     elif option is 4:
         print("Configuring current maze...")
+        print(*maze, sep="\n")
+        configOption = printConfigMenu()
+        if configOption is 0:
+            # return to menu
+            pass
+        elif configOption is 1:
+            # create a wall
+            pass
+        elif configOption is 2:
+            # create passageway
+            pass
+        elif configOption is 3:
+            # create start point
+            pass
+        elif configOption is 4:
+            # create end point
+            break
         time.sleep(1)
     elif option is 0:
         print("Shutting down...")
