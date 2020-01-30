@@ -16,8 +16,8 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh 'pytest --cov'
-                // Pytest here
+                // Run pytest and check coverage of explicit files to 90% Coverage.
+                sh 'pytest  --cov --cov-fail-under 90'
             }
         }
         stage('Deploy') {

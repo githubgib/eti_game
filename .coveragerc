@@ -1,5 +1,5 @@
 [run]
-omit = */__pycache__, */py_compileCheck.py
+omit = */__pycache__, */py_compileCheck.py, */tests/*
 branch = true
 source = .
 
