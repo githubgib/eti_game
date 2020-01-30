@@ -1,5 +1,6 @@
 import time
 import csv
+maze = []
 menuList = ["Exit",
             "Read and load maze from file",
             "View maze",
@@ -35,16 +36,44 @@ while True:
             line_count = 0
             for row in csv_reader:
                 if line_count == 0:
-                    print(f'Column names are {", ".join(row)}')
+                    maze.insert(0, row)
                     line_count += 1
-                else:
-                    print(
-                        f'\t{row[0]} works in the {row[1]} department, and was born in {row[2]}.')
+                    print(row)
+                elif line_count == 1:
+                    maze.insert(1, row)
                     line_count += 1
-            print(f'Processed {line_count} lines.')
+
+                elif line_count == 2:
+                    maze.insert(2, row)
+                    line_count += 1
+
+                elif line_count == 3:
+                    maze.insert(3, row)
+                    line_count += 1
+
+                elif line_count == 4:
+                    maze.insert(4, row)
+                    line_count += 1
+
+                elif line_count == 5:
+                    maze.insert(5, row)
+                    line_count += 1
+
+                elif line_count == 6:
+                    maze.insert(6, row)
+                    line_count += 1
+
+                elif line_count == 7:
+                    maze.insert(7, row)
+                    line_count += 1
+
+                # Remove comment to print maze array for debug
+                # print(f"Final Maze array {maze}")
+                print(f'Read {line_count} lines.')
         time.sleep(1)
     elif option is 2:
         print("Viewing maze...")
+        print(*maze, sep="\n")
         time.sleep(1)
     elif option is 3:
         print("Playing maze game...")
