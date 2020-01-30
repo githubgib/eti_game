@@ -22,7 +22,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                sh 'python3 game.py'
+                // Key in some values to test the game here, manual inputs.. etc!
+                // sh 'python3 game.py'
             }
         }
     }
