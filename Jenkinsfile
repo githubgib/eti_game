@@ -25,6 +25,8 @@ pipeline {
                 echo 'Deploying....'
                 // Push to dockerhub image repository with tags per mergeid/featurebranch or etc.
                 // sh 'python3 game.py'
+                def finalImage = docker.build("bchewy/eti_game:${env.VERSION_NO}")
+                finalImage.push()
             }
         }
     }
