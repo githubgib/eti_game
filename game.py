@@ -1,5 +1,6 @@
 import time
 import csv
+from operator import setitem
 maze = []
 menuList = ["Exit",
             "Read and load maze from file",
@@ -49,21 +50,51 @@ def ConfigureMenu():
     elif configOption is 1:
         # create a wall
         wallopt = str(input(
-            "Coords (Row,Column) to configure, or B(configure menu) or M(main menu) to return there:"))
+            "Enter Coords Row,Column to add/replace with wall, or B(configure menu) or M(main menu) to return there:"))
         if wallopt is "B":
-            ConfigureMenu()
+            ConfigureMenu()  # returns to confgiure menu
         elif wallopt is "M":
             pass  # returns to main menu
-
+        else:
+            coords = [int(i) for i in wallopt.split(',')]  # eg: [0,1]
+            print(coords)
+            maze[coords[0]][coords[1]] = 'X'  # insert X at maze[row][column]
     elif configOption is 2:
         # create passageway
-        pass
+        passopt = str(input(
+            "Enter Coords Row,Column to add/replace with passageway, or B(configure menu) or M(main menu) to return there:"))
+        if passopt is "B":
+            ConfigureMenu()  # returns to confgiure menu
+        elif passopt is "M":
+            pass  # returns to main menu
+        else:
+            coords = [int(i) for i in passopt.split(',')]  # eg: [0,1]
+            print(coords)
+            maze[coords[0]][coords[1]] = 'O'  # insert O at maze[row][column]
     elif configOption is 3:
         # create start point
-        pass
+        startptopt = str(input(
+            "Enter Coords Row,Column to add/replace with start point, or B(configure menu) or M(main menu) to return there:"))
+        if startptopt is "B":
+            ConfigureMenu()  # returns to confgiure menu
+        elif startptopt is "M":
+            pass  # returns to main menu
+        else:
+            coords = [int(i) for i in startptopt.split(',')]  # eg: [0,1]
+            print(coords)
+            maze[coords[0]][coords[1]] = 'B'  # insert B at maze[row][column]
     elif configOption is 4:
         # create end point
-        pass
+        endptopt = str(input(
+            "Enter Coords Row,Column to add/replace with end point, or B(configure menu) or M(main menu) to return there:"))
+        if endptopt is "B":
+            ConfigureMenu()  # returns to confgiure menu
+        elif endptopt is "M":
+            pass  # returns to main menu
+        else:
+            coords = [int(i) for i in endptopt.split(',')]  # eg: [0,1]
+            print(coords)
+            maze[coords[0]][coords[1]] = 'A'  # insert B at maze[row][column]
     time.sleep(1)
 
 
@@ -83,7 +114,6 @@ while True:
                 if line_count == 0:
                     maze.insert(0, row)
                     line_count += 1
-                    print(row)
                 elif line_count == 1:
                     maze.insert(1, row)
                     line_count += 1
