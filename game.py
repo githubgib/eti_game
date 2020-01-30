@@ -40,6 +40,33 @@ def printConfigMenu():
     return(int(input("Enter your option: ")))
 
 
+def ConfigureMenu():
+    print(*maze, sep="\n")
+    configOption = printConfigMenu()
+    if configOption is 0:
+        # return to menu
+        pass
+    elif configOption is 1:
+        # create a wall
+        wallopt = str(input(
+            "Coords (Row,Column) to configure, or B(configure menu) or M(main menu) to return there:"))
+        if wallopt is "B":
+            ConfigureMenu()
+        elif wallopt is "M":
+            pass  # returns to main menu
+
+    elif configOption is 2:
+        # create passageway
+        pass
+    elif configOption is 3:
+        # create start point
+        pass
+    elif configOption is 4:
+        # create end point
+        pass
+    time.sleep(1)
+
+
 # Menu while loop
 while True:
     option = printMenu()
@@ -98,25 +125,7 @@ while True:
         print("Playing maze game...")
         time.sleep(1)
     elif option is 4:
-        print("Configuring current maze...")
-        print(*maze, sep="\n")
-        configOption = printConfigMenu()
-        if configOption is 0:
-            # return to menu
-            pass
-        elif configOption is 1:
-            # create a wall
-            pass
-        elif configOption is 2:
-            # create passageway
-            pass
-        elif configOption is 3:
-            # create start point
-            pass
-        elif configOption is 4:
-            # create end point
-            pass
-        time.sleep(1)
+        ConfigureMenu()
     elif option is 0:
         print("Shutting down...")
         time.sleep(2)
