@@ -1,6 +1,6 @@
 import time
 import csv
-from operator import setitem
+
 maze = []
 menuList = ["Exit",
             "Read and load maze from file",
