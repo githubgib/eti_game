@@ -115,7 +115,7 @@ while True:
             pass
         elif configOption is 4:
             # create end point
-            break
+            pass
         time.sleep(1)
     elif option is 0:
         print("Shutting down...")
