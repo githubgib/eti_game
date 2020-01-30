@@ -29,6 +29,7 @@ while True:
         print("Reading and loading maze from file...")
         filename = str(
             input("Enter the .csv file name (without .csv):"))+'.csv'
+        # Read the maze file here
         with open(filename) as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
             line_count = 0
