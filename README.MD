@@ -1,5 +1,5 @@
 <p align="center>
-          ![Mr Worldwide Jenkins](https://jenkins.io/images/logos/worldwide/worldwide.png)
+          <img src="https://jenkins.io/images/logos/worldwide/worldwide.png>
           </p>
           <p align="center">
                            
