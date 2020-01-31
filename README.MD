@@ -16,7 +16,7 @@
 - Python
 
 #### Devops Setup:
-![Image of Workflow](https://i.imgur.com/XWTgzYu.png)
+![Image of Workflow](https://i.imgur.com/jfo4Jlt.png)
 The above image shows our team's devops setup. As you'll see, the red sections are automated to faciliate a swift and sound development-to-final product process. A full explaination can be found in the assignment report.
 
 
