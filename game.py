@@ -149,7 +149,18 @@ while True:
         print("Playing maze game...")
 
         # loop through the entire maze array
-        # find the starting point (B)
+        # find the starting point (A)
+        # ask user for input (WASD - up left, down right, M for return to menu) validation stop
+
+        # W - [-1, same index]
+        # A - [same index, -1]
+        # S - [+1, same index]
+        # D - [same, +1]
+
+        # alter array accordingly
+        # check if the input is valid, is it O?
+        # if the input move is valid,
+        # replace starting coords with O
 
         time.sleep(1)
     elif option is 4:
