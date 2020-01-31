@@ -1,5 +1,10 @@
-### ETI_Game
+<p align="center>
+          ![Mr Worldwide Jenkins](https://jenkins.io/images/logos/worldwide/worldwide.png)
+          </p>
+          <p align="center">
+                           
 ![Docker Image](https://img.shields.io/docker/pulls/bchewy/eti_game)
+</p>
 <br>
 A github repository for the Emerging Trends in Information Technology module.
 
