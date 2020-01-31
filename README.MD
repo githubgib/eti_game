@@ -1,12 +1,12 @@
-<p align="center>
-          <img src="https://jenkins.io/images/logos/worldwide/worldwide.png>
-          </p>
-          <p align="center">
-                           
-![Docker Image](https://img.shields.io/docker/pulls/bchewy/eti_game)
+<p align="center">
+    <img src="https://jenkins.io/images/logos/worldwide/worldwide.png"
+        height="130">
+   <h1 align="center"> ETI Game </h1>
 </p>
-<br>
-A github repository for the Emerging Trends in Information Technology module.
+
+<p align="center">
+          <img src="https://img.shields.io/docker/pulls/bchewy/eti_game?style=for-the-badge" /></a>
+</p>
 
 
 #### Technologies:
