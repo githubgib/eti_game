@@ -17,7 +17,13 @@ The above image shows our team's devops setup. As you'll see, the red sections a
 As part of one of our many deliverables, we chose to deliver & "deploy" our final product as a docker image. Each version of the software can be picked out through our docker image tags. You may pull different versions of the software at any time. 
 
 1. Clone this repository, or use docker. (Currently v0)
-``` docker pull bchewy/eti_game:v0 ```
+``` 
+$ docker pull bchewy/eti_game:v0
+v0: Pulling from bchewy/eti_game
+Digest: sha256:488b857f7310ff25341cd23f4a6f3b664efca9e1717649425cd1c642089bb091
+Status: Image is up to date for bchewy/eti_game:v0
+docker.io/bchewy/eti_game:v0
+```
 2. Extract source code from within the docker image, and run the game in the container
 ```
 $ docker run -it --entrypoint sh bchewy/eti_game:v0
