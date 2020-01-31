@@ -82,7 +82,7 @@ def ConfigureMenu():
         else:
             coords = [int(i) for i in startptopt.split(',')]  # eg: [0,1]
             print(coords)
-            maze[coords[0]][coords[1]] = 'B'  # insert B at maze[row][column]
+            maze[coords[0]][coords[1]] = 'A'  # insert B at maze[row][column]
     elif configOption is 4:
         # create end point
         endptopt = str(input(
@@ -94,7 +94,7 @@ def ConfigureMenu():
         else:
             coords = [int(i) for i in endptopt.split(',')]  # eg: [0,1]
             print(coords)
-            maze[coords[0]][coords[1]] = 'A'  # insert B at maze[row][column]
+            maze[coords[0]][coords[1]] = 'B'  # insert B at maze[row][column]
     time.sleep(1)
 
 
@@ -117,27 +117,21 @@ while True:
                 elif line_count == 1:
                     maze.insert(1, row)
                     line_count += 1
-
                 elif line_count == 2:
                     maze.insert(2, row)
                     line_count += 1
-
                 elif line_count == 3:
                     maze.insert(3, row)
                     line_count += 1
-
                 elif line_count == 4:
                     maze.insert(4, row)
                     line_count += 1
-
                 elif line_count == 5:
                     maze.insert(5, row)
                     line_count += 1
-
                 elif line_count == 6:
                     maze.insert(6, row)
                     line_count += 1
-
                 elif line_count == 7:
                     maze.insert(7, row)
                     line_count += 1
@@ -153,6 +147,10 @@ while True:
         time.sleep(1)
     elif option is 3:
         print("Playing maze game...")
+
+        # loop through the entire maze array
+        # find the starting point (B)
+
         time.sleep(1)
     elif option is 4:
         ConfigureMenu()
