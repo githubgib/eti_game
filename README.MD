@@ -44,8 +44,8 @@ Enter your option:
 3. You're set. You have full access to the source codes from a stable branch, and the appropriate docker environment to run it on.
 
 #### Contributors
-Shin - Technical Lead
-Jia Wei - QA Lead
-Brian - Project Manager/Developer
-Darren - QA Engineer
-Wei Xiang - Developer
+- Shin - Technical Lead
+- Jia Wei - QA Lead
+- Brian - Project Manager/Developer
+- Darren - QA Engineer
+- Wei Xiang - Developer
