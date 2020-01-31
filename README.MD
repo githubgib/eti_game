@@ -1,5 +1,6 @@
 ### ETI_Game
-![Docker build passing?](https://img.shields.io/docker/build/bchewy/eti_game?style=plastic)
+![Docker Image](https://img.shields.io/docker/pulls/bchewy/eti_game)
+<br>
 A github repository for the Emerging Trends in Information Technology module.
 
 
