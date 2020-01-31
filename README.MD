@@ -5,8 +5,8 @@
 </p>
 
 <p align="center">
-          <img src="https://img.shields.io/docker/pulls/bchewy/eti_game?style=for-the-badge" />https://hub.docker.com/repository/docker/bchewy/eti_game/</a>
-          <img src="https://img.shields.io/docker/cloud/build/bchewy/eti_game?style=for-the-badge"/>https://hub.docker.com/repository/docker/bchewy/eti_game/</a>
+          <a><img src="https://img.shields.io/docker/pulls/bchewy/eti_game?style=for-the-badge" />https://hub.docker.com/repository/docker/bchewy/eti_game/</a>
+          <a><img src="https://img.shields.io/docker/cloud/build/bchewy/eti_game?style=for-the-badge"/>https://hub.docker.com/repository/docker/bchewy/eti_game/</a>
 </p>
 
 
