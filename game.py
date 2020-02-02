@@ -63,7 +63,6 @@ def mainMenu(option, cut=""):
 
     elif option is 4:
         print("Configuring current maze...")
-        time.sleep(1)
         if cut == "cut":
             return "Configuring current maze."
         ConfigureMenu()
@@ -71,9 +70,7 @@ def mainMenu(option, cut=""):
 
     elif option is 0:
         print("Shutting down...")
-        time.sleep(2)
         print("Goodbye.")
-        time.sleep(1)
         return False
 
     else:
@@ -128,7 +125,7 @@ def printConfigMenu():
 
 
 def ConfigureMenu():
-    print(*maze, sep="\n")
+    printMaze()
     configOption = printConfigMenu()
     if configOption is 0:
         # return to menu
@@ -262,11 +259,12 @@ def movePlayer(direction):
             maze[coords[0]][coords[1]] = 'O'
             maze[coords[0]-1][coords[1]] = 'A'
             printMaze()
+            print(colored("Successfully moved up", 'green'))
+
         else:
             printInvalidOpt()
 
     elif direction == 'A':
-        print("moving left!")
         # A - [same index, -1]
         coords = [int(i)
                   for i in start_coords_formatted.split(',')]
@@ -278,6 +276,8 @@ def movePlayer(direction):
             maze[coords[0]][coords[1]] = 'O'
             maze[coords[0]][coords[1]-1] = 'A'
             printMaze()
+            print(colored("Successfully moved left", 'green'))
+
         else:
             printInvalidOpt()
     elif direction == 'S':
@@ -291,10 +291,10 @@ def movePlayer(direction):
             maze[coords[0]][coords[1]] = 'O'
             maze[coords[0]+1][coords[1]] = 'A'
             printMaze()
+            print(colored("Successfully moved down", 'green'))
         else:
             printInvalidOpt()
     elif direction == 'D':
-        print("moving right!")
         # D - [same, +1]
         coords = [int(i)
                   for i in start_coords_formatted.split(',')]
@@ -306,6 +306,8 @@ def movePlayer(direction):
             maze[coords[0]][coords[1]] = 'O'
             maze[coords[0]][coords[1]+1] = 'A'
             printMaze()
+            print(colored("Successfully moved right", 'green'))
+
         else:
             printInvalidOpt()
     else:
@@ -319,12 +321,19 @@ def printMaze():
         for element in row:
             if element is "X":
                 print(colored(element, 'cyan'), end='')
+                print(" ", end="")
             if element is "A":
                 print(colored(element, 'red'), end='')
+                print(" ", end="")
+
             if element is "B":
                 print(colored(element, 'magenta'), end='')
+                print(" ", end="")
+
             if element is "O":
                 print(element, end='')
+                print(" ", end="")
+
         print("\n")
     # print(*maze, sep="\n")
     print(colored(bars, 'blue'))
@@ -340,14 +349,13 @@ def playGame():
     printMaze()
     while not completed:
         direction = str(input(
-            colored("Enter the direction in which you which to move towards (WASD) or (M) to return to main menu. :", 'red'))).upper()
+            colored("Enter move (WASD) or (M) to return. :", 'red'))).upper()
         if direction == "M":
             break
         elif direction in ["W", "A", "S", "D"]:
             movePlayer(direction)
         else:
             print("Invalid option.")
-
 
     # Menu while loop
 if __name__ == "__main__":
