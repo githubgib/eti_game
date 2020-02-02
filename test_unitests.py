@@ -21,7 +21,7 @@ def test_print_menu_failure():
 # Unit test for functional feature: Reading Maze
 def test_mainMenu_input_1():
     test = mainMenu(1)
-    assert test == "Option 1 selected."
+    assert test == "Reading maze."
 
 # Unit test for functional feature: Load Maze
 def test_read_maze():
@@ -39,7 +39,7 @@ def test_configure_maze():
     assert test == "Configuring current maze."
 
 # Unit test for functional feature: Exit game
-def test_mainMenu_exit()):
+def test_mainMenu_exit():
     test = mainMenu(0)
     assert test == "Exit."
 
