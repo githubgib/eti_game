@@ -6,9 +6,11 @@ pipeline {
 
     envrionment{
         VERSION_NO = '1.0'
+        REGISTRY = "bchewy/eti_game"
+        REGISTRY_CREDS = 'dockerhub'
+        DOCKER_IMG = ''
     }
 
-    // Write out what happens each stage
     stages {
         stage('Build') {
             steps {
@@ -28,9 +30,12 @@ pipeline {
             steps {
                 echo 'Deploying....'
                 // Push to dockerhub image repository with tags per mergeid/featurebranch or etc.
-                // sh 'python3 game.py'
-                def finalImage = docker.build("bchewy/eti_game:${env.VERSION_NO}")
-                finalImage.push()
+                script{
+                    DOCKER_IMG = docker.build("bchewy/eti_game:${env.VERSION_NO}")
+                    docker.withRegistry('', REGISTRY_CREDS){
+                        DOCKER_IMG.push()
+                    }
+                }
             }
         }
     }
