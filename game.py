@@ -35,11 +35,44 @@ def printMenu(menu):
 def mainMenu(option):
     if option is 1:
         print("Reading and loading maze from file...")
-        filename = str(input("Enter the .csv file name (without .csv):"))+'.csv'
-        checkFile(filename)
         time.sleep(1)
-        return "Reading maze."
+        filename = str(
+            input("Enter the .csv file name (without .csv):"))+'.csv'
+        # Read the maze file here
+        with open(filename) as csv_file:
+            csv_reader = csv.reader(csv_file, delimiter=',')
+            line_count = 0
+            for row in csv_reader:
+                if line_count == 0:
+                    maze.insert(0, row)
+                    line_count += 1
+                elif line_count == 1:
+                    maze.insert(1, row)
+                    line_count += 1
+                elif line_count == 2:
+                    maze.insert(2, row)
+                    line_count += 1
+                elif line_count == 3:
+                    maze.insert(3, row)
+                    line_count += 1
+                elif line_count == 4:
+                    maze.insert(4, row)
+                    line_count += 1
+                elif line_count == 5:
+                    maze.insert(5, row)
+                    line_count += 1
+                elif line_count == 6:
+                    maze.insert(6, row)
+                    line_count += 1
+                elif line_count == 7:
+                    maze.insert(7, row)
+                    line_count += 1
 
+                # Remove comment to print maze array for debug
+                # print(f"Final Maze array {maze}")
+                print(f'Read {line_count} lines.')
+
+        return "Reading maze."
 
     elif option is 2:
         time.sleep(1)
@@ -71,59 +104,18 @@ def mainMenu(option):
         return "Configuring current maze."
         ConfigureMenu()
         
-
+        
     elif option is 0:
         print("Shutting down...")
         time.sleep(2)
         print("Goodbye.")
         time.sleep(1)
-<<<<<<< HEAD
         return "Exit."
         exit()
-=======
-        return False
->>>>>>> a9eab31cdb6c336e9249d222d3943ed4ec8a3e33
 
     else:
         print("You have entered an invalid option. Please re-enter your option.")
         return "Invalid option selected."
-
-def checkFile(filename):
-    # Read the maze file here
-    with open(filename) as csv_file:
-        csv_reader = csv.reader(csv_file, delimiter=',')
-        line_count = 0
-        for row in csv_reader:
-            if line_count == 0:
-                maze.insert(0, row)
-                line_count += 1
-            elif line_count == 1:
-                maze.insert(1, row)
-                line_count += 1
-            elif line_count == 2:
-                maze.insert(2, row)
-                line_count += 1
-            elif line_count == 3:
-                maze.insert(3, row)
-                line_count += 1
-            elif line_count == 4:
-                maze.insert(4, row)
-                line_count += 1
-            elif line_count == 5:
-                maze.insert(5, row)
-                line_count += 1
-            elif line_count == 6:
-                maze.insert(6, row)
-                line_count += 1
-            elif line_count == 7:
-                maze.insert(7, row)
-                line_count += 1
-
-                # Remove comment to print maze array for debug
-                # print(f"Final Maze array {maze}")
-                print(f'Read {line_count} lines.')
-
-        return line_count
 
 
 def printConfigMenu():
@@ -196,12 +188,13 @@ def ConfigureMenu():
 
 # Menu while loop
 if __name__ == "__main__":
-    while True:
-        printMenu(True)
-<<<<<<< HEAD
-        mainMenu(int(input("Enter your option: ")))
+    playing = True
+    while (playing != False):
+        try:
+            printMenu(True)
+            playing = mainMenu(int(input("Enter your option: ")))
+        except ValueError:
+            print("You have entered a digit range of 0 - 4. Please re-enter your option.")
+            continue
 
     
-=======
-        mainMenu(int(input("Enter your option: ")))
->>>>>>> a9eab31cdb6c336e9249d222d3943ed4ec8a3e33
