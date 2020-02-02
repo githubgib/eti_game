@@ -315,7 +315,18 @@ def movePlayer(direction):
 
 def printMaze():
     print(colored(bars, 'blue'))
-    print(*maze, sep="\n")
+    for row in maze:
+        for element in row:
+            if element is "X":
+                print(colored(element, 'cyan'), end='')
+            if element is "A":
+                print(colored(element, 'red'), end='')
+            if element is "B":
+                print(colored(element, 'magenta'), end='')
+            if element is "O":
+                print(element, end='')
+        print("\n")
+    # print(*maze, sep="\n")
     print(colored(bars, 'blue'))
 
 
@@ -326,10 +337,10 @@ def printInvalidOpt():
 
 def playGame():
     global completed
+    printMaze()
     while not completed:
-        printMaze()
         direction = str(input(
-            colored("Enter the direction in which you which to move towards (WASD) or (M) to return to main menu. :", 'red')))
+            colored("Enter the direction in which you which to move towards (WASD) or (M) to return to main menu. :", 'red'))).upper()
         if direction == "M":
             break
         elif direction in ["W", "A", "S", "D"]:
