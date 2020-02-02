@@ -4,6 +4,10 @@ pipeline {
     //  agent { docker { image 'python:3.8' } }
     agent { dockerfile true  }
 
+    envrionment{
+        VERSION_NO = '1.0'
+    }
+
     // Write out what happens each stage
     stages {
         stage('Build') {
