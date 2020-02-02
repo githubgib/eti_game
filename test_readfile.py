@@ -4,5 +4,6 @@ from game import *
 
 
 def test_mazefileread():
-    test = readFileName()
-    assert test == "Menu displayed."
+    filename = str("maze.csv")
+    test = checkFile(filename)
+    assert test == 7

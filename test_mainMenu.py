@@ -33,7 +33,7 @@ def test_configure_maze():
 # Unit test for functional feature: Exit game
 def test_mainMenu_exit():
     test = mainMenu(0)
-    assert test == "Exit."
+    assert test == False
 
  # Unit test for functional feature: Exit game
 def test_mainMenu_input_error():
