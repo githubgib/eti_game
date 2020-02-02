@@ -4,10 +4,14 @@ pipeline {
     //  agent { docker { image 'python:3.8' } }
     agent { dockerfile true  }
 
+    environment {
+        DISABLE_AUTH = 'true'
+        DB_ENGINE    = 'sqlite'
+    }
+
     envrionment {
         VERSION_NO = '1.0'
-        REGISTRY = "bchewy/eti_game"
-        REGISTRY_CREDS = 'dockerhub'
+        REGISTRY   = "bchewy/eti_game"
         DOCKER_IMG = ''
     }
 
@@ -32,7 +36,7 @@ pipeline {
                 // Push to dockerhub image repository with tags per mergeid/featurebranch or etc.
                 script{
                     DOCKER_IMG = docker.build("bchewy/eti_game:${env.VERSION_NO}")
-                    docker.withRegistry('', REGISTRY_CREDS){
+                    docker.withRegistry('', 'dockerhub'){
                         DOCKER_IMG.push()
                     }
                 }
