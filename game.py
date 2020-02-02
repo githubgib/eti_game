@@ -195,6 +195,7 @@ def ConfigureMenu():
 
 # Menu while loop
 if __name__ == "__main__":
-    while True:
+    playing = True
+    while (playing != False):
         printMenu(True)
-        mainMenu(int(input("Enter your option: ")))
+        playing = mainMenu(int(input("Enter your option: ")))
