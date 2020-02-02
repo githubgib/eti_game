@@ -5,14 +5,10 @@ pipeline {
     agent { dockerfile true  }
 
     environment {
-        DISABLE_AUTH = 'true'
-        DB_ENGINE    = 'sqlite'
-    }
-
-    envrionment {
         VERSION_NO = '1.0'
         REGISTRY   = "bchewy/eti_game"
         DOCKER_IMG = ''
+        
     }
 
     stages {
