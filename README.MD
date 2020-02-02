@@ -13,9 +13,9 @@
   </a>
 </p>
 
-### See it in action!
 <p align="center">
-    ![](https://media.giphy.com/media/fYlCJWTzTyZypIMvmk/giphy.gif)
+    <h3 align="center"> See it in action! </h3>
+    <img src="https://media.giphy.com/media/fYlCJWTzTyZypIMvmk/giphy.gif"/>
 </p>
 #### Technologies:
 - Docker 
