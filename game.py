@@ -101,16 +101,17 @@ def mainMenu(option):
         return "Playing maze game."
 
     elif option is 4:
-        ConfigureMenu()
         return "Configuring current maze."
+        ConfigureMenu()
+        
 
     elif option is 0:
         print("Shutting down...")
         time.sleep(2)
         print("Goodbye.")
         time.sleep(1)
-        exit()
         return "Exit."
+        exit()
 
     else:
         print("You have entered an invalid option. Please re-enter your option.")
