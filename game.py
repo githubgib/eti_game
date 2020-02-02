@@ -43,8 +43,11 @@ def mainMenu(option, cut=""):
             return "Reading maze."
 
         filename = str(
-            input(colored("Enter the .csv file name (without .csv):", 'red')))+'.csv'
-        checkFile(filename)
+            input(colored("Enter filename (w/o .csv):", 'red')))+'.csv'
+        try:
+            checkFile(filename)
+        except FileNotFoundError:
+            print(colored("File wasn't found.", 'magenta'))
         return "Reading maze."
 
     elif option is 2:
@@ -57,7 +60,10 @@ def mainMenu(option, cut=""):
         if cut == "cut":
             return "Playing maze game."
 
-        playGame()
+        if len(maze) == 0:
+            print(colored("The maze is empty. Please load one in from the menu.", 'blue'))
+        else:
+            playGame()
 
         return "Playing maze game."
 
@@ -65,7 +71,12 @@ def mainMenu(option, cut=""):
         print("Configuring current maze...")
         if cut == "cut":
             return "Configuring current maze."
-        ConfigureMenu()
+
+        if len(maze) == 0:
+            print(colored("The maze is empty. Please load one in from the menu.", 'blue'))
+        else:
+            ConfigureMenu()
+
         return "Configuring current maze."
 
     elif option is 0:
@@ -316,27 +327,30 @@ def movePlayer(direction):
 
 
 def printMaze():
-    print(colored(bars, 'blue'))
-    for row in maze:
-        for element in row:
-            if element is "X":
-                print(colored(element, 'cyan'), end='')
-                print(" ", end="")
-            if element is "A":
-                print(colored(element, 'red'), end='')
-                print(" ", end="")
+    if len(maze) == 0:
+        print(colored("The maze is empty. Please load one in from the menu.", 'blue'))
+    else:
+        print(colored(bars, 'blue'))
+        for row in maze:
+            for element in row:
+                if element is "X":
+                    print(colored(element, 'cyan'), end='')
+                    print(" ", end="")
+                if element is "A":
+                    print(colored(element, 'red'), end='')
+                    print(" ", end="")
 
-            if element is "B":
-                print(colored(element, 'magenta'), end='')
-                print(" ", end="")
+                if element is "B":
+                    print(colored(element, 'magenta'), end='')
+                    print(" ", end="")
 
-            if element is "O":
-                print(element, end='')
-                print(" ", end="")
+                if element is "O":
+                    print(element, end='')
+                    print(" ", end="")
 
-        print("\n")
-    # print(*maze, sep="\n")
-    print(colored(bars, 'blue'))
+            print("\n")
+        # print(*maze, sep="\n")
+        print(colored(bars, 'blue'))
 
 
 def printInvalidOpt():
@@ -356,6 +370,7 @@ def playGame():
             movePlayer(direction)
         else:
             print("Invalid option.")
+
 
     # Menu while loop
 if __name__ == "__main__":
