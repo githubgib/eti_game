@@ -4,7 +4,7 @@ pipeline {
     //  agent { docker { image 'python:3.8' } }
     agent { dockerfile true  }
 
-    envrionment{
+    envrionment {
         VERSION_NO = '1.0'
         REGISTRY = "bchewy/eti_game"
         REGISTRY_CREDS = 'dockerhub'
