@@ -4,28 +4,47 @@ from game import *
 
 
 # Unit test for functional feature: Displaying menu
-@pytest.fixture
-def test_display_menu(capsys):
-    printMenu()
-    captured = capsys.readouterr()
-    assert captured.out == "hello\n"
+# @pytest.fixture
+# def test_display_menu(capsys):
+#     printMenu()
+#     captured = capsys.readouterr()
+#     assert captured.out == "hello\n"
 
+def test_print_menu_success():
+    test = printMenu(True)
+    assert test == "Menu displayed."
+
+def test_print_menu_failure():
+    test = printMenu(False)
+    assert test == "Menu display error."
 
 # Unit test for functional feature: Reading Maze
-def test_read_maze():
-    pass
-
+def test_mainMenu_input_1():
+    test = mainMenu(1)
+    assert test == "Option 1 selected."
 
 # Unit test for functional feature: Load Maze
-def test_load_mazefile():
-    pass
-
-
-# Unit test for functional feature: Play maze
+def test_read_maze():
+    test = mainMenu(2)
+    assert test == "Viewing maze."
+    
+# Unit test for functional feature: Play Maze
 def test_play_maze():
-    pass
-
+    test = mainMenu(3)
+    assert test == "Playing maze game."
 
 # Unit test for functional feature: Configuring maze
 def test_configure_maze():
-    pass
+    test = mainMenu(4)
+    assert test == "Configuring current maze."
+
+# Unit test for functional feature: Exit game
+def test_mainMenu_exit()):
+    test = mainMenu(0)
+    assert test == "Exit."
+
+ # Unit test for functional feature: Exit game
+def test_mainMenu_input_error():
+    test = mainMenu(3123)
+    assert test == "Invalid option selected."
+
