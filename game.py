@@ -35,6 +35,7 @@ def printMenu(menu):
 def mainMenu(option):
     if option is 1:
         print("Reading and loading maze from file...")
+        time.sleep(1)
         filename = str(input("Enter the .csv file name (without .csv):"))+'.csv'
         checkFile(filename)
         time.sleep(1)
@@ -42,8 +43,8 @@ def mainMenu(option):
 
 
     elif option is 2:
-        time.sleep(1)
         print("Viewing maze...")
+        time.sleep(1)
         # Prints the arrays, seperated with a new line for proper formatting.
         print(*maze, sep="\n")
         return "Viewing maze."
@@ -68,6 +69,8 @@ def mainMenu(option):
         return "Playing maze game."
 
     elif option is 4:
+        print("Configuring current maze...")
+        time.sleep(1)
         ConfigureMenu()
         return "Configuring current maze."
 
@@ -116,9 +119,7 @@ def checkFile(filename):
                 # Remove comment to print maze array for debug
                 # print(f"Final Maze array {maze}")
                 print(f'Read {line_count} lines.')
-
         return line_count
-
 
 def printConfigMenu():
     print("Configuration Menu\n{}".format(bars))
@@ -185,7 +186,6 @@ def ConfigureMenu():
             coords = [int(i) for i in endptopt.split(',')]  # eg: [0,1]
             print(coords)
             maze[coords[0]][coords[1]] = 'B'  # insert B at maze[row][column]
-    time.sleep(1)
 
 
 # Menu while loop

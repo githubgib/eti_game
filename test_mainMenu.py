@@ -1,6 +1,6 @@
 # Tests here?
 import pytest
-from game import *
+from game import checkFile, ConfigureMenu, printConfigMenu, printMenu, mainMenu
 
 
 # Unit test for functional feature: Displaying menu
