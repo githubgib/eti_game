@@ -32,51 +32,24 @@ def printMenu(menu):
         return "Menu display error."
     # return(int(input("Enter your option: ")))
 
-def mainMenu(option):
+def mainMenu(option, cut = ""):
     if option is 1:
         print("Reading and loading maze from file...")
         time.sleep(1)
-        filename = str(
-            input("Enter the .csv file name (without .csv):"))+'.csv'
-        # Read the maze file here
-        with open(filename) as csv_file:
-            csv_reader = csv.reader(csv_file, delimiter=',')
-            line_count = 0
-            for row in csv_reader:
-                if line_count == 0:
-                    maze.insert(0, row)
-                    line_count += 1
-                elif line_count == 1:
-                    maze.insert(1, row)
-                    line_count += 1
-                elif line_count == 2:
-                    maze.insert(2, row)
-                    line_count += 1
-                elif line_count == 3:
-                    maze.insert(3, row)
-                    line_count += 1
-                elif line_count == 4:
-                    maze.insert(4, row)
-                    line_count += 1
-                elif line_count == 5:
-                    maze.insert(5, row)
-                    line_count += 1
-                elif line_count == 6:
-                    maze.insert(6, row)
-                    line_count += 1
-                elif line_count == 7:
-                    maze.insert(7, row)
-                    line_count += 1
-
-                # Remove comment to print maze array for debug
-                # print(f"Final Maze array {maze}")
-                print(f'Read {line_count} lines.')
-
+        if cut == "cut":
+            return "Reading maze."
+        
+        filename = str(input("Enter the .csv file name (without .csv):"))+'.csv'
+        checkFile(filename)
         return "Reading maze."
 
+        # Remove comment to print maze array for debug
+        # print(f"Final Maze array {maze}")
+        print(f'Read {line_count} lines.')
+        
     elif option is 2:
-        time.sleep(1)
         print("Viewing maze...")
+        time.sleep(1)
         # Prints the arrays, seperated with a new line for proper formatting.
         print(*maze, sep="\n")
         return "Viewing maze."
@@ -101,8 +74,12 @@ def mainMenu(option):
         return "Playing maze game."
 
     elif option is 4:
-        return "Configuring current maze."
+        print("Configuring current maze...")
+        time.sleep(1)
+        if cut == "cut":
+            return "Configuring current maze."
         ConfigureMenu()
+        return "Configuring current maze."
         
         
     elif option is 0:
@@ -110,13 +87,47 @@ def mainMenu(option):
         time.sleep(2)
         print("Goodbye.")
         time.sleep(1)
-        return "Exit."
-        exit()
+        return False
 
     else:
         print("You have entered an invalid option. Please re-enter your option.")
         return "Invalid option selected."
 
+def checkFile(filename):
+    # Read the maze file here
+    with open(filename) as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        line_count = 0
+        for row in csv_reader:
+            if line_count == 0:
+                maze.insert(0, row)
+                line_count += 1
+            elif line_count == 1:
+                maze.insert(1, row)
+                line_count += 1
+            elif line_count == 2:
+                maze.insert(2, row)
+                line_count += 1
+            elif line_count == 3:
+                maze.insert(3, row)
+                line_count += 1
+            elif line_count == 4:
+                maze.insert(4, row)
+                line_count += 1
+            elif line_count == 5:
+                maze.insert(5, row)
+                line_count += 1
+            elif line_count == 6:
+                maze.insert(6, row)
+                line_count += 1
+            elif line_count == 7:
+                maze.insert(7, row)
+                line_count += 1
+
+                # Remove comment to print maze array for debug
+                # print(f"Final Maze array {maze}")
+                print(f'Read {line_count} lines.')
+        return line_count
 
 def printConfigMenu():
     print("Configuration Menu\n{}".format(bars))
@@ -183,7 +194,6 @@ def ConfigureMenu():
             coords = [int(i) for i in endptopt.split(',')]  # eg: [0,1]
             print(coords)
             maze[coords[0]][coords[1]] = 'B'  # insert B at maze[row][column]
-    time.sleep(1)
 
 
 # Menu while loop
@@ -198,3 +208,4 @@ if __name__ == "__main__":
             continue
 
     
+        

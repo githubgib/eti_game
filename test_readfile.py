@@ -1,9 +1,8 @@
 # # Tests here?
 # import pytest
-from game import *
+from game import checkFile
 
-
-def test_mazefileread():
+def test_linecount():
     filename = str("maze.csv")
     test = checkFile(filename)
-    assert test == 7
+    assert test == 8
