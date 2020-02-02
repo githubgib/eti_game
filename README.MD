@@ -13,6 +13,8 @@
   </a>
 </p>
 
+### See it in action!
+![](https://media.giphy.com/media/VbVWlMcrJOzWC5UrQx/giphy.gif)
 
 #### Technologies:
 - Docker 
