@@ -32,7 +32,7 @@ def printMenu(menu):
         return "Menu display error."
     # return(int(input("Enter your option: ")))
 
-def mainMenu(option, cut =''):
+def mainMenu(option, cut = ""):
     if option is 1:
         print("Reading and loading maze from file...")
         time.sleep(1)

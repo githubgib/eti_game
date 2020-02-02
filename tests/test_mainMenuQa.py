@@ -27,7 +27,7 @@ def test_menu_no_option():
     assert noOptions == "Invalid option selected."
 
 def test_menu_select_option_1():
-    Option1 = mainMenu(1)
+    Option1 = mainMenu(1, 'cut')
     assert Option1 == "Reading maze."
 
 def test_menu_select_option_2():
@@ -39,9 +39,9 @@ def test_menu_select_option_3():
     assert Option3 == "Playing maze game."
 
 def test_menu_select_option_4():
-    Option4 = mainMenu(4)
+    Option4 = mainMenu(4, 'cut')
     assert Option4 == "Configuring current maze."
 
 def test_menu_select_option_0():
     Option0 = mainMenu(0)
-    assert Option0 == "Exit."
+    assert Option0 == False
