@@ -1,5 +1,7 @@
 import time
 import csv
+import re
+from termcolor import colored
 
 maze = []
 menuList = ["Exit",
@@ -15,62 +17,48 @@ configMenuList = [
     "Create end point",
 ]
 bars = "="*35
-
+completed = False
 # Display Menu
 
 
 def printMenu(menu):
     if menu == True:
-        print("\nMain Menu\n{}".format(bars))
+        print(colored("\nMain Menu\n{}".format(bars), 'green'))
         for menu in range(1, 5):
-            print("[{}]{}{}".format(menu, '\t', menuList[menu]))
+            print(colored("[{}]{}{}".format(
+                menu, '\t', menuList[menu]), 'green'))
         print('\n'*0)
         for m in range(0, 1):
-            print("[{}]{}{}".format(m, '\t', menuList[m]))
+            print(colored("[{}]{}{}".format(m, '\t', menuList[m]), 'green'))
         return "Menu displayed."
     else:
         return "Menu display error."
     # return(int(input("Enter your option: ")))
 
-def mainMenu(option, cut = ""):
+
+def mainMenu(option, cut=""):
     if option is 1:
         print("Reading and loading maze from file...")
-        time.sleep(1)
         if cut == "cut":
             return "Reading maze."
-        
-        filename = str(input("Enter the .csv file name (without .csv):"))+'.csv'
+
+        filename = str(
+            input(colored("Enter the .csv file name (without .csv):", 'red')))+'.csv'
         checkFile(filename)
         return "Reading maze."
 
-        # Remove comment to print maze array for debug
-        # print(f"Final Maze array {maze}")
-        print(f'Read {line_count} lines.')
-        
     elif option is 2:
         print("Viewing maze...")
-        time.sleep(1)
-        # Prints the arrays, seperated with a new line for proper formatting.
-        print(*maze, sep="\n")
+        printMaze()
         return "Viewing maze."
 
     elif option is 3:
         print("Playing maze game...")
-        time.sleep(1)
+        if cut == "cut":
+            return "Playing maze game."
 
-        # loop through the entire maze array
-        # find the starting point (A)
-        # ask user for input (WASD - up left, down right, M for return to menu) validation stop
+        playGame()
 
-        # W - [-1, same index]
-        # A - [same index, -1]
-        # S - [+1, same index]
-        # D - [same, +1]
-
-        # alter array accordingly
-        # check if the input is valid, is it O?
-        # if the input move is valid,
-        # replace starting coords with O
         return "Playing maze game."
 
     elif option is 4:
@@ -80,8 +68,7 @@ def mainMenu(option, cut = ""):
             return "Configuring current maze."
         ConfigureMenu()
         return "Configuring current maze."
-        
-        
+
     elif option is 0:
         print("Shutting down...")
         time.sleep(2)
@@ -92,6 +79,7 @@ def mainMenu(option, cut = ""):
     else:
         print("You have entered an invalid option. Please re-enter your option.")
         return "Invalid option selected."
+
 
 def checkFile(filename):
     # Read the maze file here
@@ -124,10 +112,9 @@ def checkFile(filename):
                 maze.insert(7, row)
                 line_count += 1
 
-                # Remove comment to print maze array for debug
-                # print(f"Final Maze array {maze}")
                 print(f'Read {line_count} lines.')
         return line_count
+
 
 def printConfigMenu():
     print("Configuration Menu\n{}".format(bars))
@@ -137,7 +124,7 @@ def printConfigMenu():
     for m in range(0, 1):
         print("[{}]{}{}".format(m, '\t', configMenuList[m]))
 
-    return(int(input("Enter your option: ")))
+    return(int(input(colored("Enter your option: ", 'red'))))
 
 
 def ConfigureMenu():
@@ -148,8 +135,8 @@ def ConfigureMenu():
         pass
     elif configOption is 1:
         # create a wall
-        wallopt = str(input(
-            "Enter Coords Row,Column to add/replace with wall, or B(configure menu) or M(main menu) to return there:"))
+        wallopt = str(input(colored(
+            "Enter Coords Row,Column to add/replace with wall, or B(configure menu) or M(main menu) to return there:")))
         if wallopt is "B":
             ConfigureMenu()  # returns to confgiure menu
         elif wallopt is "M":
@@ -160,8 +147,8 @@ def ConfigureMenu():
             maze[coords[0]][coords[1]] = 'X'  # insert X at maze[row][column]
     elif configOption is 2:
         # create passageway
-        passopt = str(input(
-            "Enter Coords Row,Column to add/replace with passageway, or B(configure menu) or M(main menu) to return there:"))
+        passopt = str(input(colored(
+            "Enter Coords Row,Column to add/replace with passageway, or B(configure menu) or M(main menu) to return there:", 'red')))
         if passopt is "B":
             ConfigureMenu()  # returns to confgiure menu
         elif passopt is "M":
@@ -172,8 +159,8 @@ def ConfigureMenu():
             maze[coords[0]][coords[1]] = 'O'  # insert O at maze[row][column]
     elif configOption is 3:
         # create start point
-        startptopt = str(input(
-            "Enter Coords Row,Column to add/replace with start point, or B(configure menu) or M(main menu) to return there:"))
+        startptopt = str(input(colored(
+            "Enter Coords Row,Column to add/replace with start point, or B(configure menu) or M(main menu) to return there:", 'red')))
         if startptopt is "B":
             ConfigureMenu()  # returns to confgiure menu
         elif startptopt is "M":
@@ -184,8 +171,8 @@ def ConfigureMenu():
             maze[coords[0]][coords[1]] = 'A'  # insert B at maze[row][column]
     elif configOption is 4:
         # create end point
-        endptopt = str(input(
-            "Enter Coords Row,Column to add/replace with end point, or B(configure menu) or M(main menu) to return there:"))
+        endptopt = str(input(colored(
+            "Enter Coords Row,Column to add/replace with end point, or B(configure menu) or M(main menu) to return there:", 'red')))
         if endptopt is "B":
             ConfigureMenu()  # returns to confgiure menu
         elif endptopt is "M":
@@ -196,16 +183,169 @@ def ConfigureMenu():
             maze[coords[0]][coords[1]] = 'B'  # insert B at maze[row][column]
 
 
-# Menu while loop
+# Returns start point of maze if it is found.
+def searchStart():
+    result = [(i, el.index("A"))
+              for i, el in enumerate(maze) if "A" in el]
+    if result == []:
+        print("Maze doesn't have a start point!")
+    else:
+        print("Returning this value: %s", str(result[0]))
+        return str(result[0])  # Converts to string so it is easier to pull
+
+
+def validMove(coords, move):
+    if move == 'up':
+        if maze[coords[0]-1][coords[1]] == 'O' or maze[coords[0]-1][coords[1]] == 'B':
+            return True
+        else:
+            return False
+    if move == 'left':
+        if maze[coords[0]][coords[1]-1] == 'O' or maze[coords[0]][coords[1]-1] == 'B':
+            return True
+        else:
+            return False
+    if move == 'down':
+        if maze[coords[0]+1][coords[1]] == 'O' or maze[coords[0]+1][coords[1]] == 'B':
+            return True
+        else:
+            return False
+    if move == 'right':
+        if maze[coords[0]][coords[1]+1] == 'O' or maze[coords[0]][coords[1]+1] == 'B':
+            return True
+        else:
+            return False
+
+
+def validCompletetion(coords, move):
+    global completed
+    if move == 'up':
+        if maze[coords[0]-1][coords[1]] == 'B':
+            completed = True
+            return True
+        else:
+            return False
+    if move == 'left':
+        if maze[coords[0]][coords[1]-1] == 'B':
+            completed = True
+            return True
+        else:
+            return False
+    if move == 'down':
+        if maze[coords[0]+1][coords[1]] == 'B':
+            completed = True
+            return True
+        else:
+            return False
+    if move == 'right':
+        if maze[coords[0]][coords[1]+1] == 'B':
+            completed = True
+            return True
+        else:
+            return False
+
+
+def movePlayer(direction):
+    direction.upper()
+    start_coords = searchStart()
+    start_coords_formatted = re.split('[()]', start_coords)[1]
+
+    if direction == 'W':
+        # W - [-1, same index]
+        coords = [int(i)
+                  for i in start_coords_formatted.split(',')]
+
+        if validCompletetion(coords, 'up'):
+            print(colored("You've completed the maze. Good job!", 'magenta'))
+
+        if validMove(coords, 'up'):
+            maze[coords[0]][coords[1]] = 'O'
+            maze[coords[0]-1][coords[1]] = 'A'
+            printMaze()
+        else:
+            printInvalidOpt()
+
+    elif direction == 'A':
+        print("moving left!")
+        # A - [same index, -1]
+        coords = [int(i)
+                  for i in start_coords_formatted.split(',')]
+
+        if validCompletetion(coords, 'left'):
+            print(colored("You've completed the maze. Good job!", 'magenta'))
+
+        if validMove(coords, 'left'):
+            maze[coords[0]][coords[1]] = 'O'
+            maze[coords[0]][coords[1]-1] = 'A'
+            printMaze()
+        else:
+            printInvalidOpt()
+    elif direction == 'S':
+        # S - [+1, same index]
+        coords = [int(i)
+                  for i in start_coords_formatted.split(',')]
+        if validCompletetion(coords, 'down'):
+            print(colored("You've completed the maze. Good job!", 'magenta'))
+
+        if validMove(coords, 'down'):
+            maze[coords[0]][coords[1]] = 'O'
+            maze[coords[0]+1][coords[1]] = 'A'
+            printMaze()
+        else:
+            printInvalidOpt()
+    elif direction == 'D':
+        print("moving right!")
+        # D - [same, +1]
+        coords = [int(i)
+                  for i in start_coords_formatted.split(',')]
+
+        if validCompletetion(coords, 'right'):
+            print(colored("You've completed the maze. Good job!", 'magenta'))
+
+        if validMove(coords, 'right'):
+            maze[coords[0]][coords[1]] = 'O'
+            maze[coords[0]][coords[1]+1] = 'A'
+            printMaze()
+        else:
+            printInvalidOpt()
+    else:
+        print(colored(
+            "That option is not a valid option. Please select another option", 'magenta'))
+
+
+def printMaze():
+    print(colored(bars, 'blue'))
+    print(*maze, sep="\n")
+    print(colored(bars, 'blue'))
+
+
+def printInvalidOpt():
+    print(colored(
+        "That option is not a valid move. Please select another move", 'magenta'))
+
+
+def playGame():
+    global completed
+    while not completed:
+        printMaze()
+        direction = str(input(
+            colored("Enter the direction in which you which to move towards (WASD) or (M) to return to main menu. :", 'red')))
+        if direction == "M":
+            break
+        elif direction in ["W", "A", "S", "D"]:
+            movePlayer(direction)
+        else:
+            print("Invalid option.")
+
+
+    # Menu while loop
 if __name__ == "__main__":
     playing = True
     while (playing != False):
         try:
             printMenu(True)
-            playing = mainMenu(int(input("Enter your option: ")))
+            playing = mainMenu(
+                int(input(colored("Enter your option: ", 'red'))))
         except ValueError:
             print("You have entered a digit range of 0 - 4. Please re-enter your option.")
             continue
-
-    
-        
