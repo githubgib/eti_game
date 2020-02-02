@@ -32,13 +32,15 @@ def printMenu(menu):
         return "Menu display error."
     # return(int(input("Enter your option: ")))
 
-def mainMenu(option):
+def mainMenu(option, cut =''):
     if option is 1:
         print("Reading and loading maze from file...")
         time.sleep(1)
+        if cut == "cut":
+            return "Reading maze."
+        
         filename = str(input("Enter the .csv file name (without .csv):"))+'.csv'
         checkFile(filename)
-        time.sleep(1)
         return "Reading maze."
 
 
@@ -71,8 +73,11 @@ def mainMenu(option):
     elif option is 4:
         print("Configuring current maze...")
         time.sleep(1)
+        if cut == "cut":
+            return "Configuring current maze."
         ConfigureMenu()
         return "Configuring current maze."
+        
 
     elif option is 0:
         print("Shutting down...")

@@ -12,7 +12,7 @@ from game import checkFile, ConfigureMenu, printConfigMenu, printMenu, mainMenu
 
 # Unit test for functional feature: Reading Maze
 def test_read_maze():
-    test = mainMenu(1)
+    test = mainMenu(1, 'cut')
     assert test == "Reading maze."
 
 # Unit test for functional feature: Load Maze
@@ -27,7 +27,7 @@ def test_play_maze():
 
 # Unit test for functional feature: Configuring maze
 def test_configure_maze():
-    test = mainMenu(4)
+    test = mainMenu(4, 'cut')
     assert test == "Configuring current maze."
 
 # Unit test for functional feature: Exit game
