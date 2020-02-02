@@ -1,5 +1,5 @@
 import pytest
-from mazegame.maze_game_functions import *
+from game import *
 
 def test_data_file_blank():
     value == " "

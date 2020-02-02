@@ -10,21 +10,13 @@ from game import *
 #     captured = capsys.readouterr()
 #     assert captured.out == "hello\n"
 
-def test_print_menu_success():
-    test = printMenu(True)
-    assert test == "Menu displayed."
-
-def test_print_menu_failure():
-    test = printMenu(False)
-    assert test == "Menu display error."
-
 # Unit test for functional feature: Reading Maze
-def test_mainMenu_input_1():
+def test_read_maze():
     test = mainMenu(1)
     assert test == "Reading maze."
 
 # Unit test for functional feature: Load Maze
-def test_read_maze():
+def test_view_maze():
     test = mainMenu(2)
     assert test == "Viewing maze."
     

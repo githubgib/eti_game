@@ -72,7 +72,7 @@ def mainMenu(option):
                 # print(f"Final Maze array {maze}")
                 print(f'Read {line_count} lines.')
 
-        return "Option 1 selected."
+        return "Reading maze."
 
     elif option is 2:
         time.sleep(1)
@@ -109,8 +109,8 @@ def mainMenu(option):
         time.sleep(2)
         print("Goodbye.")
         time.sleep(1)
-        return "Exit."
         exit()
+        return "Exit."
 
     else:
         print("You have entered an invalid option. Please re-enter your option.")
@@ -186,8 +186,9 @@ def ConfigureMenu():
 
 
 # Menu while loop
-while True:
-    printMenu(True)
-    mainMenu(int(input("Enter your option: ")))
+if __name__ == "__main__":
+    while True:
+        printMenu(True)
+        mainMenu(int(input("Enter your option: ")))
 
     
