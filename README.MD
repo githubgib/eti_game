@@ -14,8 +14,7 @@
 </p>
 
 <p align="center">
-    <h3 align="center"> See it in action! </h3>
-    <img src="https://media.giphy.com/media/fYlCJWTzTyZypIMvmk/giphy.gif"/>
+    <img align="center" src="https://media.giphy.com/media/fYlCJWTzTyZypIMvmk/giphy.gif"/>
 </p>
 #### Technologies:
 - Docker 
