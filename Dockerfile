@@ -5,6 +5,7 @@ WORKDIR /app
 
 # Installs pip requirements and copy entire app over!
 RUN pip install -r requirements.txt
+RUN pip install termcolor
 COPY . /app
 
 ENV DISPLAY=:99
