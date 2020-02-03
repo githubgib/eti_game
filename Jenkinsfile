@@ -22,7 +22,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                // Run pytest and check coverage of explicit files to 90% Coverage.
+                // Run pytest and check coverage of explicit files to 90% Coverage./
                 sh 'pytest  --cov --cov-fail-under 35'
             }
         }
