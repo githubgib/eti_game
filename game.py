@@ -33,7 +33,6 @@ def printMenu(menu):
         return "Menu displayed."
     else:
         return "Menu display error."
-    # return(int(input("Enter your option: ")))
 
 
 def mainMenu(option, cut=""):
@@ -90,7 +89,6 @@ def mainMenu(option, cut=""):
 
 
 def checkFile(filename):
-    # Read the maze file here
     with open(filename) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         line_count = 0
@@ -139,56 +137,51 @@ def ConfigureMenu():
     printMaze()
     configOption = printConfigMenu()
     if configOption is 0:
-        # return to menu
         pass
     elif configOption is 1:
-        # create a wall
         wallopt = str(input(colored(
             "Enter Coords Row,Column to add/replace with wall, or B(configure menu) or M(main menu) to return there:")))
         if wallopt is "B":
-            ConfigureMenu()  # returns to confgiure menu
+            ConfigureMenu()
         elif wallopt is "M":
-            pass  # returns to main menu
+            pass
         else:
-            coords = [int(i) for i in wallopt.split(',')]  # eg: [0,1]
+            coords = [int(i) for i in wallopt.split(',')]
             print(coords)
-            maze[coords[0]][coords[1]] = 'X'  # insert X at maze[row][column]
+            maze[coords[0]][coords[1]] = 'X'
     elif configOption is 2:
-        # create passageway
         passopt = str(input(colored(
             "Enter Coords Row,Column to add/replace with passageway, or B(configure menu) or M(main menu) to return there:", 'red')))
         if passopt is "B":
-            ConfigureMenu()  # returns to confgiure menu
+            ConfigureMenu()
         elif passopt is "M":
-            pass  # returns to main menu
+            pass
         else:
-            coords = [int(i) for i in passopt.split(',')]  # eg: [0,1]
+            coords = [int(i) for i in passopt.split(',')]
             print(coords)
-            maze[coords[0]][coords[1]] = 'O'  # insert O at maze[row][column]
+            maze[coords[0]][coords[1]] = 'O'
     elif configOption is 3:
-        # create start point
         startptopt = str(input(colored(
             "Enter Coords Row,Column to add/replace with start point, or B(configure menu) or M(main menu) to return there:", 'red')))
         if startptopt is "B":
-            ConfigureMenu()  # returns to confgiure menu
+            ConfigureMenu()
         elif startptopt is "M":
-            pass  # returns to main menu
+            pass
         else:
-            coords = [int(i) for i in startptopt.split(',')]  # eg: [0,1]
+            coords = [int(i) for i in startptopt.split(',')]
             print(coords)
-            maze[coords[0]][coords[1]] = 'A'  # insert B at maze[row][column]
+            maze[coords[0]][coords[1]] = 'A'
     elif configOption is 4:
-        # create end point
         endptopt = str(input(colored(
             "Enter Coords Row,Column to add/replace with end point, or B(configure menu) or M(main menu) to return there:", 'red')))
         if endptopt is "B":
-            ConfigureMenu()  # returns to confgiure menu
+            ConfigureMenu()
         elif endptopt is "M":
-            pass  # returns to main menu
+            pass
         else:
-            coords = [int(i) for i in endptopt.split(',')]  # eg: [0,1]
+            coords = [int(i) for i in endptopt.split(',')]
             print(coords)
-            maze[coords[0]][coords[1]] = 'B'  # insert B at maze[row][column]
+            maze[coords[0]][coords[1]] = 'B'
 
 
 # Returns start point of maze if it is found.
@@ -370,7 +363,6 @@ def playGame():
             movePlayer(direction)
         else:
             print("Invalid option.")
-
 
     # Menu while loop
 if __name__ == "__main__":
