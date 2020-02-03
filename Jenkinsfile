@@ -35,8 +35,9 @@ pipeline {
             }
         }
         stage('Deploy') {
+            agent { label 'master' }
+
             steps {
-                agent { label 'master' }
                 echo 'Deploying....'
                 // Push to dockerhub image repository with tags per mergeid/featurebranch or etc.
                 // Runs on master instead of slave
