@@ -2,8 +2,7 @@
 pipeline {
     // Set up the docker agent the jenkins slave will run on
     //  agent { docker { image 'python:3.8' } }
-    agent { dockerfile true  }
-
+    agent none
     environment {
         VERSION_NO = '1.0'
         REGISTRY   = "bchewy/eti_game"
@@ -13,6 +12,7 @@ pipeline {
 
     stages {
         stage('Initialize'){
+            agent { dockerfile true  }
             steps{
                 script{
                     def dockerHome = tool 'myDocker'
@@ -21,6 +21,7 @@ pipeline {
             }
         }
         stage('Build') {
+            agent { dockerfile true  }
             steps {
                 echo 'Building..'
                 sh 'python --version'
@@ -28,6 +29,7 @@ pipeline {
             }
         }
         stage('Test') {
+            agent { dockerfile true  }
             steps {
                 echo 'Testing..'
                 // Run pytest and check coverage of explicit files to 90% Coverage./
