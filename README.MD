@@ -11,6 +11,7 @@
   <a href="https://hub.docker.com/repository/docker/bchewy/eti_game/">
       <img src="https://img.shields.io/docker/cloud/build/bchewy/eti_game?style=for-the-badge"/>
   </a>
+    <img src="http://bchewy.me:8080/buildStatus/icon?job=eti_game"/>
 </p>
 
 <p align="center">
