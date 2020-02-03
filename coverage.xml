@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite errors="0" failures="0" hostname="Brians-MacBook-Pro.local" name="pytest" skipped="0" tests="21" time="0.131" timestamp="2020-02-03T10:01:39.840825"><testcase classname="test_mainMenu" file="test_mainMenu.py" line="13" name="test_read_maze" time="0.001"><system-out>Reading and loading maze from file...
+</system-out></testcase><testcase classname="test_mainMenu" file="test_mainMenu.py" line="20" name="test_view_maze" time="0.001"><system-out>Viewing maze...
+#x1B[34mThe maze is empty. Please load one in from the menu.#x1B[0m
+</system-out></testcase><testcase classname="test_mainMenu" file="test_mainMenu.py" line="27" name="test_play_maze" time="0.001"><system-out>Playing maze game...
+</system-out></testcase><testcase classname="test_mainMenu" file="test_mainMenu.py" line="34" name="test_configure_maze" time="0.001"><system-out>Configuring current maze...
+</system-out></testcase><testcase classname="test_mainMenu" file="test_mainMenu.py" line="41" name="test_mainMenu_exit" time="0.001"><system-out>Shutting down...
+Goodbye.
+</system-out></testcase><testcase classname="test_mainMenu" file="test_mainMenu.py" line="48" name="test_mainMenu_input_error" time="0.001"><system-out>You have entered an invalid option. Please re-enter your option.
+</system-out></testcase><testcase classname="test_printMenu" file="test_printMenu.py" line="12" name="test_print_menu_success" time="0.001"><system-out>#x1B[32m
+Main Menu
+===================================#x1B[0m
+#x1B[32m[1]	Read and load maze from file#x1B[0m
+#x1B[32m[2]	View maze#x1B[0m
+#x1B[32m[3]	Play maze game#x1B[0m
+#x1B[32m[4]	Configure current maze#x1B[0m
+
+#x1B[32m[0]	Exit#x1B[0m
+</system-out></testcase><testcase classname="test_printMenu" file="test_printMenu.py" line="16" name="test_print_menu_failure" time="0.001"></testcase><testcase classname="test_readfile" file="test_readfile.py" line="4" name="test_linecount" time="0.001"><system-out>Read 8 lines.
+</system-out></testcase><testcase classname="tests.test_load_data_file" file="tests/test_load_data_file.py" line="5" name="test_data_file_blank" time="0.001"><system-out>Reading and loading maze from file...
+</system-out></testcase><testcase classname="tests.test_mainMenuQa" file="tests/test_mainMenuQa.py" line="5" name="test_display_menu_success" time="0.001"><system-out>#x1B[32m
+Main Menu
+===================================#x1B[0m
+#x1B[32m[1]	Read and load maze from file#x1B[0m
+#x1B[32m[2]	View maze#x1B[0m
+#x1B[32m[3]	Play maze game#x1B[0m
+#x1B[32m[4]	Configure current maze#x1B[0m
+
+#x1B[32m[0]	Exit#x1B[0m
+</system-out></testcase><testcase classname="tests.test_mainMenuQa" file="tests/test_mainMenuQa.py" line="10" name="test_display_menu_failure" time="0.000"></testcase><testcase classname="tests.test_mainMenuQa" file="tests/test_mainMenuQa.py" line="15" name="test_menu_invalid_option_out_of_range" time="0.001"><system-out>You have entered an invalid option. Please re-enter your option.
+</system-out></testcase><testcase classname="tests.test_mainMenuQa" file="tests/test_mainMenuQa.py" line="20" name="test_menu_invalid_option_characters" time="0.001"><system-out>You have entered an invalid option. Please re-enter your option.
+</system-out></testcase><testcase classname="tests.test_mainMenuQa" file="tests/test_mainMenuQa.py" line="25" name="test_menu_invalid_option_special_characters" time="0.001"><system-out>You have entered an invalid option. Please re-enter your option.
+</system-out></testcase><testcase classname="tests.test_mainMenuQa" file="tests/test_mainMenuQa.py" line="30" name="test_menu_no_option" time="0.001"><system-out>You have entered an invalid option. Please re-enter your option.
+</system-out></testcase><testcase classname="tests.test_mainMenuQa" file="tests/test_mainMenuQa.py" line="35" name="test_menu_select_option_1" time="0.001"><system-out>Reading and loading maze from file...
+</system-out></testcase><testcase classname="tests.test_mainMenuQa" file="tests/test_mainMenuQa.py" line="40" name="test_menu_select_option_2" time="0.003"><system-out>Viewing maze...
+#x1B[34m===================================#x1B[0m
+#x1B[36mX#x1B[0m #x1B[36mX#x1B[0m #x1B[36mX#x1B[0m #x1B[36mX#x1B[0m #x1B[36mX#x1B[0m #x1B[36mX#x1B[0m #x1B[36mX#x1B[0m #x1B[36mX#x1B[0m 
+
+#x1B[36mX#x1B[0m O O O #x1B[36mX#x1B[0m O #x1B[31mA#x1B[0m #x1B[36mX#x1B[0m 
+
+#x1B[36mX#x1B[0m O #x1B[36mX#x1B[0m O #x1B[36mX#x1B[0m O #x1B[36mX#x1B[0m #x1B[36mX#x1B[0m 
+
+#x1B[36mX#x1B[0m O #x1B[36mX#x1B[0m O #x1B[36mX#x1B[0m O O #x1B[36mX#x1B[0m 
+
+#x1B[36mX#x1B[0m O #x1B[36mX#x1B[0m O #x1B[36mX#x1B[0m O #x1B[36mX#x1B[0m #x1B[36mX#x1B[0m 
+
+#x1B[36mX#x1B[0m O #x1B[36mX#x1B[0m O #x1B[36mX#x1B[0m O O #x1B[36mX#x1B[0m 
+
+#x1B[36mX#x1B[0m O #x1B[36mX#x1B[0m O O O #x1B[36mX#x1B[0m #x1B[36mX#x1B[0m 
+
+#x1B[36mX#x1B[0m #x1B[35mB#x1B[0m #x1B[36mX#x1B[0m #x1B[36mX#x1B[0m #x1B[36mX#x1B[0m #x1B[36mX#x1B[0m #x1B[36mX#x1B[0m #x1B[36mX#x1B[0m 
+
+#x1B[34m===================================#x1B[0m
+</system-out></testcase><testcase classname="tests.test_mainMenuQa" file="tests/test_mainMenuQa.py" line="45" name="test_menu_select_option_3" time="0.001"><system-out>Playing maze game...
+</system-out></testcase><testcase classname="tests.test_mainMenuQa" file="tests/test_mainMenuQa.py" line="50" name="test_menu_select_option_4" time="0.001"><system-out>Configuring current maze...
+</system-out></testcase><testcase classname="tests.test_mainMenuQa" file="tests/test_mainMenuQa.py" line="55" name="test_menu_select_option_0" time="0.001"><system-out>Shutting down...
+Goodbye.
+</system-out></testcase></testsuite></testsuites>

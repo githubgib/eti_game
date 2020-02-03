@@ -33,7 +33,6 @@ def printMenu(menu):
         return "Menu displayed."
     else:
         return "Menu display error."
-    # return(int(input("Enter your option: ")))
 
 
 def mainMenu(option, cut=""):
@@ -43,8 +42,11 @@ def mainMenu(option, cut=""):
             return "Reading maze."
 
         filename = str(
-            input(colored("Enter the .csv file name (without .csv):", 'red')))+'.csv'
-        checkFile(filename)
+            input(colored("Enter filename (w/o .csv):", 'red')))+'.csv'
+        try:
+            checkFile(filename)
+        except FileNotFoundError:
+            print(colored("File wasn't found.", 'magenta'))
         return "Reading maze."
 
     elif option is 2:
@@ -57,23 +59,28 @@ def mainMenu(option, cut=""):
         if cut == "cut":
             return "Playing maze game."
 
-        playGame()
+        if len(maze) == 0:
+            print(colored("The maze is empty. Please load one in from the menu.", 'blue'))
+        else:
+            playGame()
 
         return "Playing maze game."
 
     elif option is 4:
         print("Configuring current maze...")
-        time.sleep(1)
         if cut == "cut":
             return "Configuring current maze."
-        ConfigureMenu()
+
+        if len(maze) == 0:
+            print(colored("The maze is empty. Please load one in from the menu.", 'blue'))
+        else:
+            ConfigureMenu()
+
         return "Configuring current maze."
 
     elif option is 0:
         print("Shutting down...")
-        time.sleep(2)
         print("Goodbye.")
-        time.sleep(1)
         return False
 
     else:
@@ -82,7 +89,6 @@ def mainMenu(option, cut=""):
 
 
 def checkFile(filename):
-    # Read the maze file here
     with open(filename) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         line_count = 0
@@ -128,59 +134,54 @@ def printConfigMenu():
 
 
 def ConfigureMenu():
-    print(*maze, sep="\n")
+    printMaze()
     configOption = printConfigMenu()
     if configOption is 0:
-        # return to menu
         pass
     elif configOption is 1:
-        # create a wall
         wallopt = str(input(colored(
             "Enter Coords Row,Column to add/replace with wall, or B(configure menu) or M(main menu) to return there:")))
         if wallopt is "B":
-            ConfigureMenu()  # returns to confgiure menu
+            ConfigureMenu()
         elif wallopt is "M":
-            pass  # returns to main menu
+            pass
         else:
-            coords = [int(i) for i in wallopt.split(',')]  # eg: [0,1]
+            coords = [int(i) for i in wallopt.split(',')]
             print(coords)
-            maze[coords[0]][coords[1]] = 'X'  # insert X at maze[row][column]
+            maze[coords[0]][coords[1]] = 'X'
     elif configOption is 2:
-        # create passageway
         passopt = str(input(colored(
             "Enter Coords Row,Column to add/replace with passageway, or B(configure menu) or M(main menu) to return there:", 'red')))
         if passopt is "B":
-            ConfigureMenu()  # returns to confgiure menu
+            ConfigureMenu()
         elif passopt is "M":
-            pass  # returns to main menu
+            pass
         else:
-            coords = [int(i) for i in passopt.split(',')]  # eg: [0,1]
+            coords = [int(i) for i in passopt.split(',')]
             print(coords)
-            maze[coords[0]][coords[1]] = 'O'  # insert O at maze[row][column]
+            maze[coords[0]][coords[1]] = 'O'
     elif configOption is 3:
-        # create start point
         startptopt = str(input(colored(
             "Enter Coords Row,Column to add/replace with start point, or B(configure menu) or M(main menu) to return there:", 'red')))
         if startptopt is "B":
-            ConfigureMenu()  # returns to confgiure menu
+            ConfigureMenu()
         elif startptopt is "M":
-            pass  # returns to main menu
+            pass
         else:
-            coords = [int(i) for i in startptopt.split(',')]  # eg: [0,1]
+            coords = [int(i) for i in startptopt.split(',')]
             print(coords)
-            maze[coords[0]][coords[1]] = 'A'  # insert B at maze[row][column]
+            maze[coords[0]][coords[1]] = 'A'
     elif configOption is 4:
-        # create end point
         endptopt = str(input(colored(
             "Enter Coords Row,Column to add/replace with end point, or B(configure menu) or M(main menu) to return there:", 'red')))
         if endptopt is "B":
-            ConfigureMenu()  # returns to confgiure menu
+            ConfigureMenu()
         elif endptopt is "M":
-            pass  # returns to main menu
+            pass
         else:
-            coords = [int(i) for i in endptopt.split(',')]  # eg: [0,1]
+            coords = [int(i) for i in endptopt.split(',')]
             print(coords)
-            maze[coords[0]][coords[1]] = 'B'  # insert B at maze[row][column]
+            maze[coords[0]][coords[1]] = 'B'
 
 
 # Returns start point of maze if it is found.
@@ -262,11 +263,12 @@ def movePlayer(direction):
             maze[coords[0]][coords[1]] = 'O'
             maze[coords[0]-1][coords[1]] = 'A'
             printMaze()
+            print(colored("Successfully moved up", 'green'))
+
         else:
             printInvalidOpt()
 
     elif direction == 'A':
-        print("moving left!")
         # A - [same index, -1]
         coords = [int(i)
                   for i in start_coords_formatted.split(',')]
@@ -278,6 +280,8 @@ def movePlayer(direction):
             maze[coords[0]][coords[1]] = 'O'
             maze[coords[0]][coords[1]-1] = 'A'
             printMaze()
+            print(colored("Successfully moved left", 'green'))
+
         else:
             printInvalidOpt()
     elif direction == 'S':
@@ -291,10 +295,10 @@ def movePlayer(direction):
             maze[coords[0]][coords[1]] = 'O'
             maze[coords[0]+1][coords[1]] = 'A'
             printMaze()
+            print(colored("Successfully moved down", 'green'))
         else:
             printInvalidOpt()
     elif direction == 'D':
-        print("moving right!")
         # D - [same, +1]
         coords = [int(i)
                   for i in start_coords_formatted.split(',')]
@@ -306,6 +310,8 @@ def movePlayer(direction):
             maze[coords[0]][coords[1]] = 'O'
             maze[coords[0]][coords[1]+1] = 'A'
             printMaze()
+            print(colored("Successfully moved right", 'green'))
+
         else:
             printInvalidOpt()
     else:
@@ -314,9 +320,30 @@ def movePlayer(direction):
 
 
 def printMaze():
-    print(colored(bars, 'blue'))
-    print(*maze, sep="\n")
-    print(colored(bars, 'blue'))
+    if len(maze) == 0:
+        print(colored("The maze is empty. Please load one in from the menu.", 'blue'))
+    else:
+        print(colored(bars, 'blue'))
+        for row in maze:
+            for element in row:
+                if element is "X":
+                    print(colored(element, 'cyan'), end='')
+                    print(" ", end="")
+                if element is "A":
+                    print(colored(element, 'red'), end='')
+                    print(" ", end="")
+
+                if element is "B":
+                    print(colored(element, 'magenta'), end='')
+                    print(" ", end="")
+
+                if element is "O":
+                    print(element, end='')
+                    print(" ", end="")
+
+            print("\n")
+        # print(*maze, sep="\n")
+        print(colored(bars, 'blue'))
 
 
 def printInvalidOpt():
@@ -326,17 +353,16 @@ def printInvalidOpt():
 
 def playGame():
     global completed
+    printMaze()
     while not completed:
-        printMaze()
         direction = str(input(
-            colored("Enter the direction in which you which to move towards (WASD) or (M) to return to main menu. :", 'red')))
+            colored("Enter move (WASD) or (M) to return. :", 'red'))).upper()
         if direction == "M":
             break
         elif direction in ["W", "A", "S", "D"]:
             movePlayer(direction)
         else:
             print("Invalid option.")
-
 
     # Menu while loop
 if __name__ == "__main__":

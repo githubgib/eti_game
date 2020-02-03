@@ -2,17 +2,27 @@
 pipeline {
     // Set up the docker agent the jenkins slave will run on
     //  agent { docker { image 'python:3.8' } }
-    agent { dockerfile true  }
-
+    agent none
     environment {
-        VERSION_NO = '1.0'
-        REGISTRY   = "bchewy/eti_game"
-        DOCKER_IMG = ''
+        VERSION_NO         = '1.0'
+        repo               = "bchewy/eti_game"
+        registryCredential = 'dockerhub'
+        dockerImg          = ''
         
     }
 
     stages {
+        stage('Initialize'){
+            agent { dockerfile true  }
+            steps{
+                script{
+                    def dockerHome = tool 'myDocker'
+                    env.PATH = "${dockerHome}/bin:${env.PATH}"
+                }
+            }
+        }
         stage('Build') {
+            agent { dockerfile true  }
             steps {
                 echo 'Building..'
                 sh 'python --version'
@@ -20,21 +30,30 @@ pipeline {
             }
         }
         stage('Test') {
+            agent { dockerfile true  }
             steps {
                 echo 'Testing..'
-                // Run pytest and check coverage of explicit files to 90% Coverage.
-                sh 'pytest  --cov --cov-fail-under 35'
+                // Run pytest and check coverage of explicit files to 90% Coverage./
+                sh 'pytest  --cov --cov-fail-under 35 --junitxml=coverage.xml'
+            }
+            post {
+                always {
+                    junit 'coverage.xml'
+                }
             }
         }
         stage('Deploy') {
+            agent { label 'master' }
+
             steps {
                 echo 'Deploying....'
                 // Push to dockerhub image repository with tags per mergeid/featurebranch or etc.
                 script{
-                    DOCKER_IMG = docker.build("bchewy/eti_game:${env.VERSION_NO}")
-                    docker.withRegistry('', 'dockerhub'){
-                        DOCKER_IMG.push()
+                    dockerImg = docker.build repo+":$BUILD_NUMBER"
+                    docker.withRegistry( '', registryCredential ) {
+                        dockerImg.push()
                     }
+                    sh 'docker rmi $repo:$BUILD_NUMBER'
                 }
             }
         }
