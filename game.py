@@ -247,7 +247,7 @@ def validCompletetion(coords, move):
 
 
 def movePlayer(direction):
-    direction.upper()SsaSas
+    direction.upper()
     start_coords = searchStart()
     start_coords_formatted = re.split('[()]', start_coords)[1]
 
