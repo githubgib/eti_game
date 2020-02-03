@@ -4,9 +4,10 @@ pipeline {
     //  agent { docker { image 'python:3.8' } }
     agent none
     environment {
-        VERSION_NO = '1.0'
-        REGISTRY   = "bchewy/eti_game"
-        DOCKER_IMG = ''
+        VERSION_NO         = '1.0'
+        repo               = "bchewy/eti_game"
+        registryCredential = 'dockerhub'
+        dockerImg          = ''
         
     }
 
@@ -44,10 +45,11 @@ pipeline {
                 // Push to dockerhub image repository with tags per mergeid/featurebranch or etc.
                 // Runs on master instead of slave
                 script{
-                    DOCKER_IMG = docker.build("bchewy/eti_game:${env.VERSION_NO}")
-                    docker.withRegistry('https://hub.docker.com', 'dockerhub'){
-                        DOCKER_IMG.push()
+                    dockerImg = docker.build repo+":$BUILD_NUMBER"
+                    docker.withRegistry( '', registryCredential ) {
+                        dockerImg.push()
                     }
+                    sh 'docker rmi $repo:$BUILD_NUMBER'
                 }
             }
         }
