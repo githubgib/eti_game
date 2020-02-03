@@ -45,7 +45,7 @@ pipeline {
                 // Runs on master instead of slave
                 script{
                     DOCKER_IMG = docker.build("bchewy/eti_game:${env.VERSION_NO}")
-                    docker.withRegistry('', 'dockerhub'){
+                    docker.withRegistry('https://hub.docker.com', 'dockerhub'){
                         DOCKER_IMG.push()
                     }
                 }
