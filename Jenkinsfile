@@ -36,15 +36,14 @@ pipeline {
         }
         stage('Deploy') {
             steps {
+                agent { label 'master' }
                 echo 'Deploying....'
                 // Push to dockerhub image repository with tags per mergeid/featurebranch or etc.
                 // Runs on master instead of slave
-                node('master'){
-                    script{
-                        DOCKER_IMG = docker.build("bchewy/eti_game:${env.VERSION_NO}")
-                        docker.withRegistry('', 'dockerhub'){
-                            DOCKER_IMG.push()
-                        }
+                script{
+                    DOCKER_IMG = docker.build("bchewy/eti_game:${env.VERSION_NO}")
+                    docker.withRegistry('', 'dockerhub'){
+                        DOCKER_IMG.push()
                     }
                 }
             }
