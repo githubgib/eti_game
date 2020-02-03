@@ -15,8 +15,8 @@ pipeline {
         stage('Initialize'){
             steps{
                 script{
-                def dockerHome = tool 'myDocker'
-                env.PATH = "${dockerHome}/bin:${env.PATH}"
+                    def dockerHome = tool 'myDocker'
+                    env.PATH = "${dockerHome}/bin:${env.PATH}"
                 }
             }
         }
@@ -38,10 +38,13 @@ pipeline {
             steps {
                 echo 'Deploying....'
                 // Push to dockerhub image repository with tags per mergeid/featurebranch or etc.
-                script{
-                    DOCKER_IMG = docker.build("bchewy/eti_game:${env.VERSION_NO}")
-                    docker.withRegistry('', 'dockerhub'){
-                        DOCKER_IMG.push()
+                // Runs on master instead of slave
+                node('!master'){
+                    script{
+                        DOCKER_IMG = docker.build("bchewy/eti_game:${env.VERSION_NO}")
+                        docker.withRegistry('', 'dockerhub'){
+                            DOCKER_IMG.push()
+                        }
                     }
                 }
             }
